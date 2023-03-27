@@ -1,0 +1,91 @@
+檔案路徑： 
+..：上一頁 ， /：下一頁
+---
+我們也可以加上alt (alternative) 這個屬性。
+在網頁瀏覽者無法正確看到圖片時，你希望對他們呈現什麼樣的說明文字。
+這種狀況會發生通常是因為:
+1.許多視能障礙的網頁瀏覽者，會使用「Screen Readers」這樣的工具，利用說明文字（alt text）來了解網頁要呈現的圖片內容。
+2.就是有些東西出錯了。例如，你誤植了圖片來源的路徑，會出現一張圖片顯示alt上面的文字
+因此，alt應詳細描述圖片的內容
+---
+href = hypertext reference
+---
+css 也不是一種程式語言，而是風格頁面語言(style sheet language)
+整個架構稱為規則集(rule set)：
+最前頭為html的元素名(selector)
+用大括號包著宣告(declaration)，其中包含 properties:property value;
+---
+圖像是內聯元素，需用display:block將其指定為box，才能用margin等操作
+---
+1.瀏覽器先到DNS server尋找託管網站的伺服器
+2.瀏覽器透過TCP/IP向伺服器傳送HTTP請求
+3.伺服器如果允許就會傳送「200 OK」給用戶端，並開始傳送封包
+4.瀏覽器把各個封包組成網站
+---
+在我們的 HTML 中，我們將每個巢狀的元素都以兩個空格縮排。 
+---
+在metadata中加入作者(name)以及描述(description)可以讓瀏覽器更好找到獲推薦你的網頁
+稱為搜尋引擎優化(Search Engine Optimization), or SEO
+---
+幾個常用且符合語義(sementic)的tag：
+1.<em></em>：強調，會有斜體的效果，且page閱讀器念過時也會用不同語調
+2.<strong></strong>：重要，會有粗體的效果
+3.<figure>
+---
+酷東西：
+1.如果tag有id，那麼<a></a>可加入「#指定id」，跳轉到那個id的tag，甚至是其他html檔
+2.使用<figure>讓圖片具有語義，且當中可用<figcaption>加點註釋，但與alt描述的東西盡量不同
+  且不只可以包圖片，還能包影音、程式碼等等
+3.WebM 格式通常將 Vorbis 或 Opus 音頻與 VP8/VP9 視頻打包在一起。
+  所有現代瀏覽器都支持此功能，但舊版本可能無法使用。
+4.video 為了讓瀏覽器能更快執行，可將影片資源改用<source>指定，
+  ex:<source src="檔名" type="video/mp4" />
+  最好給個type，否則瀏覽器會從可支援檔名格式的列表中一個一個找。
+5.響應式圖片：圖片單位改用w，以srcset實作或picture
+6.table可用colgroup來決定各欄的屬性，&nbsp;為空格，另外如果想做橫跨n格的效果，可用colspan和rowspan  
+---
+好習慣：
+1.如果能有相對連結就盡量使用
+2.如果要跳轉到不是html檔時記得提醒使用者，ex：連結到下載影片就要提醒
+3.<main>每個html只會有一個
+4.真的想不到好的語義時才會用<span>、<div>，但就算用了也盡量賦予class來定位他們
+5.圖片檔名也會計入SEO，所以盡量取有意義的名字
+6.圖片盡量取得授權、盡量不要連結到他人圖片
+7.如果正文有提到此圖片，則圖片的alt可以精簡
+8.盡量在圖像上傳到網站前更改他的尺寸，盡量不要用內建的width、height更改尺寸
+  且統一用css更改為佳
+9.雖然圖片可以有title屬性，但對無法使用滑鼠懸停的用戶不友善，所以也盡量在文本使用就好  
+10.圖像如果只是裝飾應放在css，如果有義義則放在html
+11.如果要放<video>應加入control的屬性，讓用戶能自行停止、啟動影片、控制音量等，
+   這對癲癇症患者尤其重要
+12.如果要用iframe，盡量指定border: none，即顯示時沒有周圍邊框
+13.為了提高速度，最好在src加載完成後用JS設置iframe的屬性，一樣會計入SEO
+14.iframe是駭客常常拿來攻擊的目標，因此盡量只在必要時加入，或者啟用HTTPS
+15.sandbox適當使用的話可以減少駭客更動到其他程式碼(詳情請另外查詢)
+16.table雖然在css沒那麼發達前常用來規劃網站，但css成熟後就沒落了
+
+---
+可能會用到：
+1.dl、dt、dd：描述列表，表示術語和定義或問題和答案
+2.blockquote：引用，不論是名人的一句話或書的段落，且通常會有cite屬性，指向引用來源
+3.abbr：用來表示縮寫原本的意思，通常與title屬性合用
+4.time：因為人類表示日期的方式太多所以為了讓機器讀懂日期而產生，
+  ex:<time datetime='2016-01-20'>20 January 2016</time>
+5.購物車可以用<div>來包住
+6.video的屬性：muted 默認關閉聲音、poster 影片遮蔽圖(可以當封面圖)、preload = "none"、"auto"、"metadata"
+7.video通常需加入字幕較佳，可透過html5裡面提供的WebVTT格式及<track>來產生
+  步驟：
+  1.產生一個WebVTT文本
+  ex:
+  WEBVTT
+  
+  1
+  00:00:22.230 --> 00:00:24.606
+  This is the first subtitle.
+  
+  ...
+  2.存成.vtt檔
+  3.在video中嵌入一個<track>，可用kind指定提示是subtitles、description等
+    src指定來源位置、srclang告訴瀏覽器用什麼語言編寫字幕、label告訴讀者他們正在搜索的語言
+8.iframe用allowfullscreen可用全屏API設於全屏
+9.簡單的圖案用svg較佳，但一樣需額外理解	
